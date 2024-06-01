@@ -1,5 +1,5 @@
 #ifdef BVEC_set_BaseLibrary
-  #error BVEC_set_BaseLibrary is no longer supported. you can define BVEC_set_abort if you want.
+  #error BVEC_set_BaseLibrary is no longer supported.
 #endif
 
 #ifndef BVEC_set_prefix
@@ -10,9 +10,6 @@
 #endif
 #ifndef BVEC_set_NodeSizeType
   #define BVEC_set_NodeSizeType uint32_t
-#endif
-#ifndef BVEC_set_MemoryCopy
-  #define BVEC_set_MemoryCopy __MemoryCopy
 #endif
 
 #ifndef BVEC_set_HandleAllocate
@@ -37,10 +34,6 @@
   #define BVEC_set_alloc_RetryAmount 0x10
 #endif
 
-#ifndef BVEC_set_abort
-  #define BVEC_set_abort __abort();
-#endif
-
 #if BVEC_set_BufferingFormat == 0
   #ifndef BVEC_set_BufferingFormat0_WantedBufferByteAmount
     #define BVEC_set_BufferingFormat0_WantedBufferByteAmount 512
@@ -63,8 +56,6 @@
 
 #undef BVEC_set_alloc_RetryAmount
 
-#undef BVEC_set_abort
-
 #undef BVEC_set_alloc_close
 #undef BVEC_set_alloc_resize
 #undef BVEC_set_alloc_open
@@ -73,9 +64,11 @@
 
 #undef BVEC_set_HandleAllocate
 
-#undef BVEC_set_MemoryCopy
 #ifdef BVEC_set_NodeData
   #undef BVEC_set_NodeData
+#endif
+#ifdef BVEC_set_PossibleUpdate
+  #undef BVEC_set_PossibleUpdate
 #endif
 #undef BVEC_set_NodeSizeType
 #undef BVEC_set_NodeType
