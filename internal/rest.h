@@ -160,9 +160,7 @@ _BVEC_P(_SetPossible)(
   _BVEC_P(t) *bvec,
   BVEC_set_NodeType Possible
 ){
-  #ifdef BVEC_set_PossibleUpdate
-    BVEC_set_PossibleUpdate
-  #endif
+  BVEC_set_PossibleUpdate
   bvec->Possible = Possible;
 }
 

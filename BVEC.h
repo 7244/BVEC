@@ -5,6 +5,11 @@
 #ifndef BVEC_set_prefix
   #error ifndef BVEC_set_prefix
 #endif
+
+#ifndef BVEC_set_PossibleUpdate
+  #define BVEC_set_PossibleUpdate
+#endif
+
 #ifndef BVEC_set_NodeType
   #define BVEC_set_NodeType uint32_t
 #endif
@@ -67,9 +72,6 @@
 #ifdef BVEC_set_NodeData
   #undef BVEC_set_NodeData
 #endif
-#ifdef BVEC_set_PossibleUpdate
-  #undef BVEC_set_PossibleUpdate
-#endif
 #undef BVEC_set_NodeSizeType
 #undef BVEC_set_NodeType
 #ifdef BVEC_set_MultipleType
@@ -81,4 +83,5 @@
   #endif
   #undef BVEC_set_MultipleType
 #endif
+#undef BVEC_set_PossibleUpdate
 #undef BVEC_set_prefix
