@@ -245,20 +245,12 @@ _BVEC_P(SetPointer)(
 
   static
   void
-  _BVEC_P(_AllocateBuffer)
+  _BVEC_P(_AllocateBufferWith)
   (
-    _BVEC_P(t) *List
+    _BVEC_P(t) *List,
+    BVEC_set_NodeType Amount
   ){
-    _BVEC_P(SetPossibleWith)(List, List->Possible);
-    _BVEC_P(_Resize)(List);
-  }
-  static
-  void
-  _BVEC_P(_AllocateBufferFromCurrent)
-  (
-    _BVEC_P(t) *List
-  ){
-    _BVEC_P(SetPossibleWith)(List, List->Current);
+    _BVEC_P(SetPossibleWith)(List, Amount);
     _BVEC_P(_Resize)(List);
   }
 #endif
@@ -273,7 +265,7 @@ _BVEC_P(SetPointer)(
   ){
     #if BVEC_set_HandleAllocate == 1
       if(List->Current == List->Possible){
-        _BVEC_P(_AllocateBuffer)(List);
+        _BVEC_P(_AllocateBufferWith)(List, List->Current);
       }
     #endif
 
@@ -293,12 +285,13 @@ _BVEC_P(AddEmpty)
   _BVEC_P(t) *List,
   BVEC_set_NodeType Amount
 ){
-  List->Current += Amount;
+  BVEC_set_NodeType Current = List->Current + Amount;
   #if BVEC_set_HandleAllocate == 1
-    if(List->Current >= List->Possible){
-      _BVEC_P(_AllocateBufferFromCurrent)(List);
+    if(Current >= List->Possible){
+      _BVEC_P(_AllocateBufferWith)(List, Current);
     }
   #endif
+  List->Current = Current;
 }
 
 #if defined(BVEC_set_MultipleType)
