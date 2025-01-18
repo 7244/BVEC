@@ -26,13 +26,25 @@
 #endif
 
 #ifndef BVEC_set_alloc_open
-  #define BVEC_set_alloc_open malloc
+  #if defined(__generic_malloc)
+    #define BVEC_set_alloc_open __generic_malloc
+  #else
+    #define BVEC_set_alloc_open malloc
+  #endif
 #endif
 #ifndef BVEC_set_alloc_resize
-  #define BVEC_set_alloc_resize realloc
+  #if defined(__generic_realloc)
+    #define BVEC_set_alloc_resize __generic_realloc
+  #else
+    #define BVEC_set_alloc_resize realloc
+  #endif
 #endif
 #ifndef BVEC_set_alloc_close
-  #define BVEC_set_alloc_close free
+  #if defined(__generic_free)
+    #define BVEC_set_alloc_close __generic_free
+  #else
+    #define BVEC_set_alloc_close free
+  #endif
 #endif
 
 #ifndef BVEC_set_alloc_RetryAmount
